@@ -159,7 +159,18 @@ in
       '';
     };
 
-    caddy.enable = mkEnableOption "Whether to enablle caddy reverse proxy to expose jitsi-meet";
+    caddy.enable = mkOption {
+      type = bool;
+      default = false;
+      description = ''
+        Wether to enable caddy reverse proxy to expose jitsi-meet.
+        If you use caddy as an alternative to nginx and set this to <literal>true</literal>,
+        set <option>services.jitsy-meet.nginx.enable</option> to <literal>false</literal>.
+
+        Further caddy configuration can be done by adapting
+        <option>services.caddy.virtualHosts.&lt;hostName&gt;</option>.
+      '';
+    };
 
     prosody.enable = mkOption {
       type = bool;
